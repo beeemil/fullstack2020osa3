@@ -5,6 +5,12 @@ const { response } = require('express')
 const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
+app.use(express.json())
+app.use(express.urlencoded())
+app.use(morgan('dev'))
+app.use(cors())
+app.use(express.static('build'))
+
 
 let persons = [
     { 
@@ -29,10 +35,7 @@ let persons = [
     }
 ]
 
-app.use(express.json())
-app.use(express.urlencoded())
-app.use(morgan('dev'))
-app.use(cors())
+
 
 
 app.post('/api/persons',(req,res) => {

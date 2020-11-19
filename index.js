@@ -1,14 +1,16 @@
+require('dotenv').config()
+
+
 const http = require('http')
 const express = require('express')
+const app = express()
 const { brotliCompress } = require('zlib')
 const { response } = require('express')
-
-const app = express()
 
 const morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person')
-require('dotenv').config()
+
 
 app.use(express.json())
 app.use(express.urlencoded())
@@ -80,7 +82,7 @@ app.get('/api/persons', (req, res) => {
     })
 })
 
-const PORT = process.env.PORT || 3001 
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
